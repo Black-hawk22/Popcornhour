@@ -1,0 +1,23 @@
+# Entorno virtual
+venv/
+
+# Archivos de Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Archivo de base de datos
+*.db
+
+# Archivos de entorno
+.env
+
+# Archivos de IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Carpeta de migraciones
+migrations/versions/
