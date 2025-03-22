@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }} - PopcornHour</title>
+</head>
+<body>
+    <h1>Bienvenido a PopcornHour</h1>
+    <div>
+        <a href="{{ url_for('main.movies') }}">Ver todas las películas</a>
+        <form action="{{ url_for('main.search') }}" method="get">
+            <input type="text" name="query" placeholder="Buscar películas...">
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+    <div>
+        <h2>Películas recientes</h2>
+        {% for movie in movies %}
+            <div>
+                <h3>{{ movie.title }}</h3>
+                <!-- Añade más detalles sobre la película si es necesario -->
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

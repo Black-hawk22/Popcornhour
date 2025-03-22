@@ -1,0 +1,69 @@
+/* Estilos generales */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1;
+}
+
+/* Estilos para películas */
+.movie-card {
+    transition: transform 0.3s ease;
+    margin-bottom: 20px;
+    height: 100%;
+}
+
+.movie-card:hover {
+    transform: translateY(-5px);
+}
+
+.movie-card img {
+    height: 300px;
+    object-fit: cover;
+}
+
+/* Estilos para calificaciones */
+.star-rating {
+    color: #ffc107;
+}
+
+/* Estilos para comentarios */
+.comment {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+}
+
+.comment-author {
+    font-weight: bold;
+}
+
+.comment-date {
+    color: #6c757d;
+    font-size: 0.8rem;
+}
+
+/* Estilos para foros */
+.forum-topic {
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+}
+
+.forum-topic-title {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.forum-topic-info {
+    font-size: 0.8rem;
+    color: #6c757d;
+}

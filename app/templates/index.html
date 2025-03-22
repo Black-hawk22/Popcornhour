@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Resultados de búsqueda{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Resultados de búsqueda para "{{ query }}"</h2>
+
+{% if movies %}
+<div class="row">
+    {% for movie in movies %}
+    <div class="col-md-4 col-lg-3 mb-4">
+        <div class="card movie-card h-100">
+            {% if movie.imagen_url %}
+            <img src="{{ movie.imagen_url }}" class="card-img-top" alt="{{ movie.titulo }}">
+            {% else %}
+            <img src="{{ url_for('static', filename='images/placeholder.jpg') }}" class="card-img-top" alt="Imagen no disponible">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ movie.titulo }}</h5>
+                <p class="card-text text-muted">{{ movie.anio }} | {{ movie.genero }}</p>
+                <div class="star-rating mb-2">
+                    {% set rating = movie.promedio_calificacion %}
+                    {% for i in range(5) %}
+                        {% if i < rating|int %}
+                            <i class="fas fa-star"></i>
+                        {% elif i < rating and i >= rating|int %}
+                            <i class="fas fa-star-half-alt"></i>
+                        {% else %}
+                            <i class="far fa-star"></i>
+                        {% endif %}
+                    {% endfor %}
+                    <span class="ms-2">{{ rating|round(1) }}</span>
+                </div>
+                <p class="card-text small">{{ movie.sinopsis|truncate(100) }}</p>
+                <a href="{{ url_for('movies.movie_detail', movie_id=movie.id) }}" class="btn btn-primary w-100">Ver detalles</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% if topics %}
+<hr class="my-4">
+<h3 class="mb-3">Temas de foro relacionados</h3>
+<div class="list-group mb-4">
+    {% for topic in topics %}
+    <a href="{{ url_for('movies.topic_detail', topic_id=topic.id) }}" class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ topic.titulo }}</h5>
+            <small>{{ topic.fecha_creacion.strftime('%d/%m/%Y') }}</small>
+        </div>
+        <p class="mb-1">{{ topic.contenido|truncate(150) }}</p>
+        <small>Por: {{ topic.autor.username }} | Comentarios: {{ topic.replies|length }}</small>
+    </a>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% else %}
+<div class="alert alert-info">
+    <h4 class="alert-heading">No se encontraron resultados</h4>
+    <p>No hemos encontrado películas o series que coincidan con tu búsqueda.</p>
+    <hr>
+    <p class="mb-0">Intenta con otros términos o <a href="{{ url_for('main.index') }}" class="alert-link">vuelve a la página de inicio</a>.</p>
+</div>
+{% endif %}
+{% endblock %}

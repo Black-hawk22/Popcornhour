@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if results %}
+    <h2>Resultados de la Búsqueda</h2>
+    <ul>
+        {% for movie in results %}
+            <li>{{ movie.title }} ({{ movie.year }})</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <div class="alert alert-info">
+        <h4 class="alert-heading">No se encontraron resultados</h4>
+        <p>No hemos encontrado películas o series que coincidan con tu búsqueda.</p>
+        <hr>
+        <p class="mb-0">
+            Intenta con otros términos o <a href="{{ url_for('main.index') }}" class="alert-link">vuelve a la página de inicio</a>.
+        </p>
+    </div>
+{% endif %}
+{% endblock %}
+
